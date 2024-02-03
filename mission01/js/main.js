@@ -1,7 +1,7 @@
 
 const user = {
   id:'asd@naver.com',
-  pw:'spdlqj123!@'
+  pw:'qwer'
 }
 
 /*
@@ -25,12 +25,86 @@ function pwReg(text){
 }
 
 
+// 1
+const idField =  document.querySelector('#userEmail');
+const pwField =  document.querySelector('#userPassword');
+const submit = document.querySelector('.btn-login');
+
+
+function handleCheckId(){
+  if (emailReg(this.value) === user.id){
+    idField.classList.remove('is-active');
+  }
+  else {
+    idField.classList.add('is-active');
+  }
+}
+
+function handleCheckPw(){
+  if (pwReg(this.value) === user.pw){
+    pwField.classList.remove('is-active');
+  }
+  else {
+    pwField.classList.add('is-active');
+  }
+}
+
+function handlesubmit (e) {
+  e.preventDefalult();
+
+  if (user.id === 'asd@naver.com' && user.pw === 'qwer') {
+    window.location.href = 'welcome.html'
+  }
+} 
+
+idField.addEventListener('input', handleCheckId);
+pwField.addEventListener('input', handleCheckPw);
+submit.addEventListener('click',handlesubmit);
 
 
 
+//2
+const loginForm = document.getElementById("login-form");
+const loginButton = document.getElementById("btn-login");
+
+function handleCheckId(){
+  if (emailReg(this.value) === user.id){
+    if (pwReg(this.value) === user.pw){
+      loginForm.classList.remove('is-active');
+    }
+    else {
+      loginForm.classList.add('is-active');
+    }
+  }
+  else {
+    loginForm.classList.add('is-active');
+  }
+}
+
+loginButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    const username = loginForm.username.value;
+    const password = loginForm.password.value;
+
+    if (username === 'asd@naver.com' && password === "qwer") {
+      alert("You have successfully logged in.");
+    }
+});
 
 
 
+//3
+const id = document.getElementById('userEmail')
+const password = document.getElementById('userpassword')
+const login = document.getElementById('login')
 
-
-
+login.addEventListener('click', () => {
+    if (emailReg(id.value) === 'asd@naver.com') {
+        if (pwReg(password.value) === 'qwer') {
+            alert('로그인 되었습니다!')
+        }
+        else {
+            alert('아이디와 비밀번호를 다시 한 번 확인해주세요!')
+        }
+    }
+})
