@@ -11,4 +11,4 @@
 모르겠다
 addEventListener의 기능이 잘 이해가 안된다
 추가로 querySelector도 더 공부해야될 것 같다
-
+html과 css의 특정 부분을 JS에서 호출하는 방법을 좀 더 공부해야될 것 같다.

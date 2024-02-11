@@ -53,7 +53,7 @@ function handlesubmit (e) {
   e.preventDefalult();
 
   if (user.id === 'asd@naver.com' && user.pw === 'qwer') {
-    window.location.href = 'welcome.html'
+    location.href = 'welcome.html'
   }
 } 
 
@@ -65,7 +65,7 @@ submit.addEventListener('click',handlesubmit);
 
 //2
 const loginForm = document.getElementById("login-form");
-const loginButton = document.getElementById("btn-login");
+//const loginButton = document.getElementById(".btn-login");
 
 function handleCheckId(){
   if (emailReg(this.value) === user.id){
@@ -94,9 +94,9 @@ loginButton.addEventListener("click", (event) => {
 
 
 //3
-const id = document.getElementById('userEmail')
-const password = document.getElementById('userpassword')
-const login = document.getElementById('login')
+const id = document.getElementById('#userEmail')
+const password = document.getElementById('#userpassword')
+const login = document.getElementById('.btn-login')
 
 login.addEventListener('click', () => {
     if (emailReg(id.value) === 'asd@naver.com') {
@@ -108,3 +108,67 @@ login.addEventListener('click', () => {
         }
     }
 })
+
+
+// 범땜코드
+const emailInput = document.querySelector('#userEmail');
+const pwInput = document.querySelector('#userPassword');
+const loginButton = document.querySelector('.btn-login');
+
+let emailPass = false;
+let pwPass = false;
+
+
+function handleEmailCheck () {
+  
+  const value = this.value;
+
+  if(emailReg(value)){
+    // 이메일 인풋에게 is--invalid 클래스를 제거
+    this.classList.remove('is--invalid');
+    emailPass = true;
+  }else{
+    // 이메일 인풋에게 is--invalid 클래스를 추가
+    this.classList.add('is--invalid');
+    emailPass = false;
+  }
+}
+
+function handlePwCheck(){
+  
+  const value = this.value;
+
+  if(pwReg(value)){
+    this.classList.remove('is--invalid');
+    pwPass = true;
+  }else{
+    this.classList.add('is--invalid');
+    pwPass = false;
+  }
+}
+
+function handleLogin(e){
+  e.preventDefault();
+
+  if(emailPass && pwPass){
+    try{
+      const id = emailInput.value;
+      const pw = pwInput.value;
+      const getUserId = user.id; // 비동기 통신 1s
+      const getUserPw = user.pw; // 비동기 통신 1s
+
+      if(id === getUserId && pw === getUserPw){
+        console.log('로그인 성공!');
+        location.href = 'welcome.html'
+      }
+    }catch{
+
+    }
+  }
+}
+
+
+
+emailInput.addEventListener('input',handleEmailCheck)
+pwInput.addEventListener('input',handlePwCheck)
+loginButton.addEventListener('click',handleLogin)
