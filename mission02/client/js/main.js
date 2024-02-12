@@ -24,8 +24,29 @@ function handleOnclick() {
     }
 
     this.classList.add("is-active");
-
     activeThumbnail = this;
 }
 
-// 그 다음에 더 해야되는데 시간이 없어서 일단 이거라도... this를 잘 활용해서... 뭔가... 여차저차... 함수... ...
+// btn으로 디자인 요소 조절
+function btnOnclick(index) {
+    setBgColor(index);
+    setImage(index);
+    setNameText(index);
+}
+
+
+// 1. `setBgColor` 함수
+function setBgColor(index) {
+    document.body.style.background = `linear-gradient(to bottom, ${data[Number(index)].color[0]},${data[Number(index)].color[1]})`;
+}
+
+// 2. `setImage` 함수
+function setImage(index) {
+    document.querySelector('.visual > div > img').src = `./assets/${data[Number(index)].name}.jpeg`;
+    document.querySelector('.visual > div > img').alt = data[Number(index)].alt;
+}
+
+// 3. `setNameText` 함수
+function setNameText(index) {
+    document.querySelector(".nickName").innerHTML=data[Number(index)].name;
+}
